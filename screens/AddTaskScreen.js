@@ -71,6 +71,10 @@ export default function AddTaskScreen() {
 		setTasks(tasks.map((task) => (task.id === id ? { ...task, done: !task.done } : task)));
 	}
 
+	function handleDeleteTask(id) {
+		setTasks(tasks.filter((task) => task.id !== id));
+	}
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.quote}>" {quote}</Text>
@@ -96,6 +100,7 @@ export default function AddTaskScreen() {
 						title={item.title}
 						done={item.done}
 						onToggle={() => handleToggleTask(item.id)}
+						onDelete={() => handleDeleteTask(item.id)}
 					/>
 				)}
 				ListEmptyComponent={<Text style={styles.empty}>No tasks yet - add one above!</Text>}
